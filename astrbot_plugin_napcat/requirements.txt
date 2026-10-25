@@ -1,0 +1,2 @@
+# endpoint 模式需要 aiohttp（AstrBot 环境自带，声明以便独立安装校验）
+aiohttp

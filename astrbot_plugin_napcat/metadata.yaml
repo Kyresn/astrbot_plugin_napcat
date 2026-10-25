@@ -1,0 +1,10 @@
+name: astrbot_plugin_napcat
+display_name: NapCat OneBot Tools
+desc: 把 NapCat（NapCatQQ）的全部 OneBot v11 API 注册为 LLM 工具，让模型直接调用 QQ 的消息、群管理、好友、文件、群相册等 178 个 action
+short_desc: LLM 直接调用 NapCat 全部 OneBot API
+version: v0.1.0
+author: Kyresn114
+repo: https://github.com/Kyresn/astrbot_plugin_napcat
+astrbot_version: ">=4.5.7"
+support_platforms:
+  - aiocqhttp
