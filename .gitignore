@@ -1,8 +1,7 @@
-# 本地工具与运行残留，不入插件仓库
-tools/
+# 运行残留，不入库
 data/
 .remember/
 .ruff_cache/
-astrbot_plugin_napcat.zip
 __pycache__/
 *.pyc
+astrbot_plugin_napcat.zip

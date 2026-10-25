@@ -2,7 +2,11 @@
 
 [AstrBot 插件](https://github.com/AstrBotDevs/AstrBot)：把 [NapCat](https://github.com/NapNeko/NapCatQQ)（NapCatQQ）的全部 OneBot v11 API 注册为 LLM 工具，让大模型在对话中直接调用 QQ 的消息收发、群管理、好友、文件、群相册等 178 个 action。
 
-适配自 [astrbot_plugin_snowluma](https://github.com/Kyresn114/astrbot_plugin_snowluma)，改用 AstrBot 自带的 aiocqhttp 连接调用 NapCat。
+适配自同作者的 SnowLuma 版插件，改用 AstrBot 自带的 aiocqhttp 连接调用 NapCat。
+
+## 安装
+
+WebUI → 插件 → 从仓库安装，填 `https://github.com/Kyresn/astrbot_plugin_napcat`。或手动把本仓库克隆/解压到 `<AstrBot>/data/plugins/astrbot_plugin_napcat/`（`metadata.yaml` 须在该目录根下）。
 
 ## 工作原理
 
@@ -62,19 +66,22 @@ NapCat 迭代快，action 集会变化。更新方法：
 2. 重新生成：
 
    ```bash
-   python tools/build_catalog.py openapi.json astrbot_plugin_napcat/catalog.json
+   python tools/build_catalog.py openapi.json catalog.json
    ```
 
-3. 替换插件目录内 `catalog.json`，执行 `/napcat_reload`。
+3. 替换仓库根目录的 `catalog.json`，执行 `/napcat_reload`。
 
 ## 开发
 
 ```bash
 # 离线测试（需 AstrBot 的 venv，因为要 import astrbot.*）
 <AstrBot>/venv/Scripts/python.exe tools/test_plugin_offline.py
+
+# 验证 AstrBot 能按 data.plugins.<name>.main 路径导入插件
+<AstrBot>/venv/Scripts/python.exe tools/check_import.py <AstrBot 核心目录>
 ```
 
-测试覆盖：catalog 结构与 JSON Schema 合法性、工具名唯一性与合法性、只读判定、工具调用路径（参数透传 / 失败信息透出 / 只读拦截 / 无 bot 与错误平台处理 / 超长截断）、initialize 过滤链路（只读、分类、max_tools、excluded_actions、tool_prefix）。
+测试覆盖：catalog 结构与 JSON Schema 合法性、工具名唯一性与合法性、只读判定、工具调用路径（参数透传 / 失败信息透出 / 只读拦截 / 无 bot 与错误平台处理 / 超长截断）、initialize 过滤链路（只读、分类、max_tools、excluded_actions、tool_prefix）、HTTP 端点通道、system prompt 注入。
 
 ## 与 SnowLuma 版的差异
 
